@@ -78,7 +78,7 @@
 // each time having defined a different variable for mode selection.
 // This way the resulted five modules are given different names.
 
-`define ALL 1
+// `define ALL 1
 
 `define RF
 
@@ -104,6 +104,7 @@
         module ekv3_nqs (d,g,s,b);
     `endif
 `else
+(* xyceModelGroup="MOSFET", xyceLevelNumber="302", xyceDeviceName="EKV MOSFET version 302.00", xyceTypeVariable="SIGN" *)
     module ekv3     (d,g,s,b);
 `endif
 

@@ -59,6 +59,20 @@
 // - hand-written version of NQS instead of "for" loop; NCS = 5
 //
 // Please check the ekv3_updates.txt file for changes between the versions
+
+// *****
+// NOTICE, T. V. Russo 26 Jul 2024:
+// This file has been modified from what was distributed by its authors and
+// copyright owners.  The definition of "ALL" has been commented out
+// and Xyce-specific attributes added to the "ekv3" module line in order
+// that the generated device socket into Xyce as the level 302 MOSFET
+// As a result, only the version produced with ALL commented out will
+// build as expected for Xyce using the "buildxyceplugin" script or by
+// addition directly into the Xyce source tree along with other Verilog-A
+// models.
+//
+// This notice provided to comply with the terms of the ECL-2.0 license.
+// *****
 `define NoCS 5
 `include "ekv3_include/ekv3_natures.va"
 `include "ekv3_include/ekv3_definitions.va"

@@ -104,10 +104,22 @@ begin : OPinfo
     Cgdov = M *( abs(ddx((QDOV),V(`GEFF))));
 
     ///Total extrinsic capacitance////////////
-    tmp1 = M * abs(ddx(QSFR,V(`GEFF)));
-    tmp2 = M * abs(ddx(QDFR,V(`GEFF)));
-    Cgsex = Cgsi + (CGSO * M * WeffNF) + Cgsov + tmp1;
-    Cgdex = Cgdi + (CGDO * M * WeffNF) + Cgdov + tmp2;
+
+    // MODIFIED BY T.V. Russo, 2025-01-20
+    // The four code lines below have been wrapped in a begin/end block
+    // and tmp1 and tmp2 made block local variables here.  This is simply to
+    // stop Xyce/ADMS from being confused by the ddx into thinking it needs
+    // to generate second derivative any time the global tmp1 and tmp2
+    // variables are used in an expression that will ultimately be used in a
+    // contribution.
+    //    c.f https://github.com/Xyce/Xyce/issues/104
+    begin
+      real tmp1,tmp2;
+      tmp1 = M * abs(ddx(QSFR,V(`GEFF)));
+      tmp2 = M * abs(ddx(QDFR,V(`GEFF)));
+      Cgsex = Cgsi + (CGSO * M * WeffNF) + Cgsov + tmp1;
+      Cgdex = Cgdi + (CGDO * M * WeffNF) + Cgdov + tmp2;
+    end
     Cgbex = Cgbi + CGBO * M * 2.0 * Leff * NF ;
     Ctotex = Cgsex + Cgbex + Cgdex;
     ////Intrnsic Gain ///////////////////////
